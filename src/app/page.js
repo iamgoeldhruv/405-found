@@ -20,7 +20,7 @@ export default  function Home() {
             method:"eth_requestAccounts"
           }) 
           console.log(accounts);
-          accountChanged("0x147D8448872b6979A7A84440F918a5B87667d618");
+          accountChanged(accounts[0]);
           
         } catch (error) {
           console.log("error_connecting");
