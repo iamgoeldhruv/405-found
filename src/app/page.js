@@ -2,24 +2,30 @@
 import Image from 'next/image'
 import { useState } from 'react';
 
-import {ethers} from 'ethers'
+// import {ethers} from 'ethers'
+
+const ethers = require('ethers')
 
 
-export default function Home() {
+export default  function Home() {
   const [errorMessage, setErrorMessage] = useState("");
   const [defaultAccount, setDefaultAccount] = useState("");
   const [userBalance, setUserBalance] = useState("");
 
-  const connectWallet = () => {
+  const connectWallet = async () => {
     if (window.ethereum) {
-      window.ethereum.request({ method: 'eth_requestAccounts' })
-        .then((result) => {
-          console.log(result );
-          accountChanged(result[0]);
-        })
-        .catch((error) => {
-          // Handle error, if necessary
-        });
+      console.log("detected");
+        try {
+          const accounts = await window.ethereum.request({
+            method:"eth_requestAccounts"
+          }) 
+          console.log(accounts);
+          accountChanged("0x147D8448872b6979A7A84440F918a5B87667d618");
+          
+        } catch (error) {
+          console.log("error_connecting");
+        }
+        
     } else {
       setErrorMessage('Install MetaMask');
     }
@@ -30,13 +36,13 @@ export default function Home() {
     getUserBalance(accountName)
   }
 
-  const  getUserBalance  = () => {
+  const  getUserBalance  = (accountAddress) => {
       window.ethereum.request({method:'eth_getBalance', params:[String(accountAddress), "latest"]})
       .then(balance =>{
-        const amount = ethers.utils.formatEther(balance)
-        setUserBalance(amount)
+        setUserBalance(ethers.formatEther(balance))
       })
   }
+  console.log(userBalance);
   // provider.getBalance(defaultAccount).then((balance) => {
   //   // convert a currency unit from wei to ether
   //   const balanceInEth = ethers.utils.formatEther(balance)
