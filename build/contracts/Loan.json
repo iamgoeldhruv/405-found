@@ -1,0 +1,1214 @@
+{
+  "contractName": "Loan",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "status",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getLoanStatus",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_status",
+          "type": "uint8"
+        }
+      ],
+      "name": "setLoanStatus",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.1+commit.c8a2cb62\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"status\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLoanStatus\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_status\",\"type\":\"uint8\"}],\"name\":\"setLoanStatus\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/loan.sol\":\"Loan\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/loan.sol\":{\"keccak256\":\"0xc03b09abd03c20af359c663f44c3cb0152e726e68a16fba774e5fd37d4770ceb\",\"urls\":[\"bzzr://7b6c4f89e88b66b97409ddd9355bcabd521f9ebda06269a7910b5bbed7660b87\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506001600460146101000a81548160ff0219169083600481111561003057fe5b0217905550610182806100446000396000f3fe608060405260043610610051576000357c010000000000000000000000000000000000000000000000000000000090048063200d2ed214610056578063acc1ab131461008f578063e38be0c2146100c8575b600080fd5b34801561006257600080fd5b5061006b610106565b6040518082600481111561007b57fe5b60ff16815260200191505060405180910390f35b34801561009b57600080fd5b506100a4610119565b604051808260048111156100b457fe5b60ff16815260200191505060405180910390f35b3480156100d457600080fd5b50610104600480360360208110156100eb57600080fd5b81019080803560ff169060200190929190505050610130565b005b600460149054906101000a900460ff1681565b6000600460149054906101000a900460ff16905090565b80600460146101000a81548160ff0219169083600481111561014e57fe5b02179055505056fea165627a7a7230582084b98994a72892ca6c475014b762f47e0f80186cb4079d35c90105f7029342cd0029",
+  "deployedBytecode": "0x608060405260043610610051576000357c010000000000000000000000000000000000000000000000000000000090048063200d2ed214610056578063acc1ab131461008f578063e38be0c2146100c8575b600080fd5b34801561006257600080fd5b5061006b610106565b6040518082600481111561007b57fe5b60ff16815260200191505060405180910390f35b34801561009b57600080fd5b506100a4610119565b604051808260048111156100b457fe5b60ff16815260200191505060405180910390f35b3480156100d457600080fd5b50610104600480360360208110156100eb57600080fd5b81019080803560ff169060200190929190505050610130565b005b600460149054906101000a900460ff1681565b6000600460149054906101000a900460ff16905090565b80600460146101000a81548160ff0219169083600481111561014e57fe5b02179055505056fea165627a7a7230582084b98994a72892ca6c475014b762f47e0f80186cb4079d35c90105f7029342cd0029",
+  "sourceMap": "66:543:0:-;;;335:61;8:9:-1;5:2;;;30:1;27;20:12;5:2;335:61:0;375:14;366:6;;:23;;;;;;;;;;;;;;;;;;;;;;;;66:543;;;;;;",
+  "deployedSourceMap": "66:543:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;402:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;402:20:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;429:83;;8:9:-1;5:2;;;30:1;27;20:12;5:2;429:83:0;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;518:79;;8:9:-1;5:2;;;30:1;27;20:12;5:2;518:79:0;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;518:79:0;;;;;;;;;;;;;;;;;;;:::i;:::-;;402:20;;;;;;;;;;;;;:::o;429:83::-;475:6;499;;;;;;;;;;;492:13;;429:83;:::o;518:79::-;583:7;574:6;;:16;;;;;;;;;;;;;;;;;;;;;;;;518:79;:::o",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract Loan {\n    uint256 amount_borrowed;\n    int interest_rate;\n    uint256 time_of_repayment;\n    address borrower_id;\n    address sender_id;\n\n    enum Status {\n        Ongoing , \n        Granted , \n        Rejected ,\n        Success , \n        Failure\n    }\n\n    constructor() public {\n        status = Status.Granted;\n    }\n\n    Status public status;\n\n    function getLoanStatus() public view returns (Status){\n        return status;\n    }\n\n    function setLoanStatus(Status _status) public {\n        status = _status;\n    }\n    \n    \n}\n",
+  "sourcePath": "/Users/Pranav_1/Desktop/dev/SyntaxError'23/contracts/loan.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/loan.sol",
+    "exportedSymbols": {
+      "Loan": [
+        47
+      ]
+    },
+    "id": 48,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 47,
+        "linearizedBaseContracts": [
+          47
+        ],
+        "name": "Loan",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 3,
+            "name": "amount_borrowed",
+            "nodeType": "VariableDeclaration",
+            "scope": 47,
+            "src": "86:23:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "86:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 5,
+            "name": "interest_rate",
+            "nodeType": "VariableDeclaration",
+            "scope": 47,
+            "src": "115:17:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_int256",
+              "typeString": "int256"
+            },
+            "typeName": {
+              "id": 4,
+              "name": "int",
+              "nodeType": "ElementaryTypeName",
+              "src": "115:3:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_int256",
+                "typeString": "int256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7,
+            "name": "time_of_repayment",
+            "nodeType": "VariableDeclaration",
+            "scope": 47,
+            "src": "138:25:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 6,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "138:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 9,
+            "name": "borrower_id",
+            "nodeType": "VariableDeclaration",
+            "scope": 47,
+            "src": "169:19:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 8,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "169:7:0",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 11,
+            "name": "sender_id",
+            "nodeType": "VariableDeclaration",
+            "scope": 47,
+            "src": "194:17:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 10,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "194:7:0",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "Loan.Status",
+            "id": 17,
+            "members": [
+              {
+                "id": 12,
+                "name": "Ongoing",
+                "nodeType": "EnumValue",
+                "src": "240:7:0"
+              },
+              {
+                "id": 13,
+                "name": "Granted",
+                "nodeType": "EnumValue",
+                "src": "259:7:0"
+              },
+              {
+                "id": 14,
+                "name": "Rejected",
+                "nodeType": "EnumValue",
+                "src": "278:8:0"
+              },
+              {
+                "id": 15,
+                "name": "Success",
+                "nodeType": "EnumValue",
+                "src": "297:7:0"
+              },
+              {
+                "id": 16,
+                "name": "Failure",
+                "nodeType": "EnumValue",
+                "src": "316:7:0"
+              }
+            ],
+            "name": "Status",
+            "nodeType": "EnumDefinition",
+            "src": "218:111:0"
+          },
+          {
+            "body": {
+              "id": 25,
+              "nodeType": "Block",
+              "src": "356:40:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 23,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 20,
+                      "name": "status",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28,
+                      "src": "366:6:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_Status_$17",
+                        "typeString": "enum Loan.Status"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 21,
+                        "name": "Status",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 17,
+                        "src": "375:6:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_enum$_Status_$17_$",
+                          "typeString": "type(enum Loan.Status)"
+                        }
+                      },
+                      "id": 22,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "memberName": "Granted",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "375:14:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_Status_$17",
+                        "typeString": "enum Loan.Status"
+                      }
+                    },
+                    "src": "366:23:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_Status_$17",
+                      "typeString": "enum Loan.Status"
+                    }
+                  },
+                  "id": 24,
+                  "nodeType": "ExpressionStatement",
+                  "src": "366:23:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 26,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 18,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "346:2:0"
+            },
+            "returnParameters": {
+              "id": 19,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "356:0:0"
+            },
+            "scope": 47,
+            "src": "335:61:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 28,
+            "name": "status",
+            "nodeType": "VariableDeclaration",
+            "scope": 47,
+            "src": "402:20:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_enum$_Status_$17",
+              "typeString": "enum Loan.Status"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 27,
+              "name": "Status",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 17,
+              "src": "402:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_enum$_Status_$17",
+                "typeString": "enum Loan.Status"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 35,
+              "nodeType": "Block",
+              "src": "482:30:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 33,
+                    "name": "status",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 28,
+                    "src": "499:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_Status_$17",
+                      "typeString": "enum Loan.Status"
+                    }
+                  },
+                  "functionReturnParameters": 32,
+                  "id": 34,
+                  "nodeType": "Return",
+                  "src": "492:13:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 36,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLoanStatus",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 29,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "451:2:0"
+            },
+            "returnParameters": {
+              "id": 32,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 31,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 36,
+                  "src": "475:6:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_Status_$17",
+                    "typeString": "enum Loan.Status"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 30,
+                    "name": "Status",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17,
+                    "src": "475:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_Status_$17",
+                      "typeString": "enum Loan.Status"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "474:8:0"
+            },
+            "scope": 47,
+            "src": "429:83:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 45,
+              "nodeType": "Block",
+              "src": "564:33:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 43,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 41,
+                      "name": "status",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 28,
+                      "src": "574:6:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_Status_$17",
+                        "typeString": "enum Loan.Status"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 42,
+                      "name": "_status",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 38,
+                      "src": "583:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_enum$_Status_$17",
+                        "typeString": "enum Loan.Status"
+                      }
+                    },
+                    "src": "574:16:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_Status_$17",
+                      "typeString": "enum Loan.Status"
+                    }
+                  },
+                  "id": 44,
+                  "nodeType": "ExpressionStatement",
+                  "src": "574:16:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 46,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setLoanStatus",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 39,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 38,
+                  "name": "_status",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 46,
+                  "src": "541:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_Status_$17",
+                    "typeString": "enum Loan.Status"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 37,
+                    "name": "Status",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 17,
+                    "src": "541:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_Status_$17",
+                      "typeString": "enum Loan.Status"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "540:16:0"
+            },
+            "returnParameters": {
+              "id": 40,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "564:0:0"
+            },
+            "scope": 47,
+            "src": "518:79:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 48,
+        "src": "66:543:0"
+      }
+    ],
+    "src": "32:578:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/loan.sol",
+      "exportedSymbols": {
+        "Loan": [
+          47
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "32:32:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            47
+          ],
+          "name": "Loan",
+          "scope": 48
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "amount_borrowed",
+              "scope": 47,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 2,
+                "name": "ElementaryTypeName",
+                "src": "86:7:0"
+              }
+            ],
+            "id": 3,
+            "name": "VariableDeclaration",
+            "src": "86:23:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "interest_rate",
+              "scope": 47,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "int256",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "int",
+                  "type": "int256"
+                },
+                "id": 4,
+                "name": "ElementaryTypeName",
+                "src": "115:3:0"
+              }
+            ],
+            "id": 5,
+            "name": "VariableDeclaration",
+            "src": "115:17:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "time_of_repayment",
+              "scope": 47,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint256",
+                  "type": "uint256"
+                },
+                "id": 6,
+                "name": "ElementaryTypeName",
+                "src": "138:7:0"
+              }
+            ],
+            "id": 7,
+            "name": "VariableDeclaration",
+            "src": "138:25:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "borrower_id",
+              "scope": 47,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 8,
+                "name": "ElementaryTypeName",
+                "src": "169:7:0"
+              }
+            ],
+            "id": 9,
+            "name": "VariableDeclaration",
+            "src": "169:19:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "sender_id",
+              "scope": 47,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 10,
+                "name": "ElementaryTypeName",
+                "src": "194:7:0"
+              }
+            ],
+            "id": 11,
+            "name": "VariableDeclaration",
+            "src": "194:17:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Loan.Status",
+              "name": "Status"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "Ongoing"
+                },
+                "id": 12,
+                "name": "EnumValue",
+                "src": "240:7:0"
+              },
+              {
+                "attributes": {
+                  "name": "Granted"
+                },
+                "id": 13,
+                "name": "EnumValue",
+                "src": "259:7:0"
+              },
+              {
+                "attributes": {
+                  "name": "Rejected"
+                },
+                "id": 14,
+                "name": "EnumValue",
+                "src": "278:8:0"
+              },
+              {
+                "attributes": {
+                  "name": "Success"
+                },
+                "id": 15,
+                "name": "EnumValue",
+                "src": "297:7:0"
+              },
+              {
+                "attributes": {
+                  "name": "Failure"
+                },
+                "id": 16,
+                "name": "EnumValue",
+                "src": "316:7:0"
+              }
+            ],
+            "id": 17,
+            "name": "EnumDefinition",
+            "src": "218:111:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 47,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 18,
+                "name": "ParameterList",
+                "src": "346:2:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 19,
+                "name": "ParameterList",
+                "src": "356:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "enum Loan.Status"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 28,
+                              "type": "enum Loan.Status",
+                              "value": "status"
+                            },
+                            "id": 20,
+                            "name": "Identifier",
+                            "src": "366:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "Granted",
+                              "referencedDeclaration": null,
+                              "type": "enum Loan.Status"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 17,
+                                  "type": "type(enum Loan.Status)",
+                                  "value": "Status"
+                                },
+                                "id": 21,
+                                "name": "Identifier",
+                                "src": "375:6:0"
+                              }
+                            ],
+                            "id": 22,
+                            "name": "MemberAccess",
+                            "src": "375:14:0"
+                          }
+                        ],
+                        "id": 23,
+                        "name": "Assignment",
+                        "src": "366:23:0"
+                      }
+                    ],
+                    "id": 24,
+                    "name": "ExpressionStatement",
+                    "src": "366:23:0"
+                  }
+                ],
+                "id": 25,
+                "name": "Block",
+                "src": "356:40:0"
+              }
+            ],
+            "id": 26,
+            "name": "FunctionDefinition",
+            "src": "335:61:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "status",
+              "scope": 47,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "enum Loan.Status",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Status",
+                  "referencedDeclaration": 17,
+                  "type": "enum Loan.Status"
+                },
+                "id": 27,
+                "name": "UserDefinedTypeName",
+                "src": "402:6:0"
+              }
+            ],
+            "id": 28,
+            "name": "VariableDeclaration",
+            "src": "402:20:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getLoanStatus",
+              "scope": 47,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 29,
+                "name": "ParameterList",
+                "src": "451:2:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 36,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Loan.Status",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Status",
+                          "referencedDeclaration": 17,
+                          "type": "enum Loan.Status"
+                        },
+                        "id": 30,
+                        "name": "UserDefinedTypeName",
+                        "src": "475:6:0"
+                      }
+                    ],
+                    "id": 31,
+                    "name": "VariableDeclaration",
+                    "src": "475:6:0"
+                  }
+                ],
+                "id": 32,
+                "name": "ParameterList",
+                "src": "474:8:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 32
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "overloadedDeclarations": [
+                            null
+                          ],
+                          "referencedDeclaration": 28,
+                          "type": "enum Loan.Status",
+                          "value": "status"
+                        },
+                        "id": 33,
+                        "name": "Identifier",
+                        "src": "499:6:0"
+                      }
+                    ],
+                    "id": 34,
+                    "name": "Return",
+                    "src": "492:13:0"
+                  }
+                ],
+                "id": 35,
+                "name": "Block",
+                "src": "482:30:0"
+              }
+            ],
+            "id": 36,
+            "name": "FunctionDefinition",
+            "src": "429:83:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setLoanStatus",
+              "scope": 47,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_status",
+                      "scope": 46,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Loan.Status",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Status",
+                          "referencedDeclaration": 17,
+                          "type": "enum Loan.Status"
+                        },
+                        "id": 37,
+                        "name": "UserDefinedTypeName",
+                        "src": "541:6:0"
+                      }
+                    ],
+                    "id": 38,
+                    "name": "VariableDeclaration",
+                    "src": "541:14:0"
+                  }
+                ],
+                "id": 39,
+                "name": "ParameterList",
+                "src": "540:16:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 40,
+                "name": "ParameterList",
+                "src": "564:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "enum Loan.Status"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 28,
+                              "type": "enum Loan.Status",
+                              "value": "status"
+                            },
+                            "id": 41,
+                            "name": "Identifier",
+                            "src": "574:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 38,
+                              "type": "enum Loan.Status",
+                              "value": "_status"
+                            },
+                            "id": 42,
+                            "name": "Identifier",
+                            "src": "583:7:0"
+                          }
+                        ],
+                        "id": 43,
+                        "name": "Assignment",
+                        "src": "574:16:0"
+                      }
+                    ],
+                    "id": 44,
+                    "name": "ExpressionStatement",
+                    "src": "574:16:0"
+                  }
+                ],
+                "id": 45,
+                "name": "Block",
+                "src": "564:33:0"
+              }
+            ],
+            "id": 46,
+            "name": "FunctionDefinition",
+            "src": "518:79:0"
+          }
+        ],
+        "id": 47,
+        "name": "ContractDefinition",
+        "src": "66:543:0"
+      }
+    ],
+    "id": 48,
+    "name": "SourceUnit",
+    "src": "32:578:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.1+commit.c8a2cb62.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x3aE92A4A5DEA56CCB6c64FFD7c3CcE4959b80ACB",
+      "transactionHash": "0xed227f18d12781e35f1b110d4afa2f72d4a68d8cbe1f044ac150640ef4a2e855"
+    }
+  },
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2023-10-27T21:15:03.784Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
