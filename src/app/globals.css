@@ -46,6 +46,7 @@
     color: #AAA8AD ;
     font-family: 'Inter', sans-serif;
     font-family: 'Poppins', sans-serif;
+    font-weight:bold;
   }
 
 .nft-based{
@@ -62,14 +63,20 @@
 }
 
 .card{
-  background-color: rgb(129, 126, 126);
+  background-color: #2D2D2D;
   height: 305px;
   width: 288px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  align-items: start;
+  font-weight: 700;
+  color:  #ffdd61;
+  margin-left: 30px;
+  /* margin-left: 100px; */
+}
+.card-font{
+  color: #ffdd61;
 }
 
 .button{
@@ -93,3 +100,8 @@
 }
 
 
+.letterSpacing{
+  letter-spacing: 2px ;
+  font-weight: 100;
+  font-size: 16px;
+}

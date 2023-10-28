@@ -32,10 +32,10 @@ export default  function Home() {
       <Headers/>
       <div class="main-2">
       <div class="main-2-1">
-      <h1 class="font"  >Unlock the </h1>
-      <h1 class="font">Power of Etheruem</h1>
+      <h1 class="font"  >Unlock the <br/> Power of Etheruem </h1>
+      {/* <h1 class="font"></h1> */}
 
-      <p >Grow your wealth with seamless transactions <br/> 
+      <p className='letterSpacing' >Grow your wealth with seamless transactions <br/> 
       and boundless opportunites</p>
       </div>
 
@@ -55,10 +55,14 @@ export default  function Home() {
       IMAGE
     </div>
     <div class="card">
-      <Card  heading1={"Lending Ethereum"}  heading2={" with NFT-collateral "} content={"Our platform allows users to use their NFTs as collateral to borrow Ethereum, expanding opportunities in the NFT lending space."} />
+      <img src='/Ethereum.svg'></img>
+      <p  className='card-font'>Lending Ethereum <br/> with NFT-collateral </p>
+      <p className='card-font'>Our platform allows <br/> users to use their NFTs <br/> as collateral to borrow <br/> Ethereum, expanding <br/> opportunities in the <br/> NFT lending space.</p>
     </div>
-    <div>
-    <Card/>
+    <div className='card'>
+      <img src='/image6.svg'></img>
+      <p className='card-font'>Lending Ethereum <br/> with NFT-collateral </p>
+      <p className='card-font'>Our platform allows <br/> users to use their NFTs <br/> as collateral to borrow <br/> Ethereum, expanding <br/> opportunities in the <br/> NFT lending space.</p>
     </div>
     </div>
     <div>
@@ -68,7 +72,7 @@ export default  function Home() {
     <div class="connect-wallet" >
       <div class="connect-wallet-1">
         <p style={{fontSize:"48px", fontWeight:"bolder", color:"#AAA8AD", margin:"10px"}} >Connect Wallet <br/> to get started</p>
-        <p> At EtherFlow, we've chosen to implement MetaMask as <br/> our wallet solution. MetaMask is renowned for its <br/> security and user-friendly features, offering a reliable <br/> means to store, manage, and transact with Ethereum<br/> and NFT assets. </p>
+        <p className='letterSpacing'> At EtherFlow, we've chosen to implement MetaMask as <br/> our wallet solution. MetaMask is renowned for its <br/> security and user-friendly features, offering a reliable <br/> means to store, manage, and transact with Ethereum<br/> and NFT assets. </p>
       <Link href="" class="button">Continue with MetaMask</Link>
       </div>
       <div>
