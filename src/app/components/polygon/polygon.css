@@ -1,0 +1,16 @@
+
+.polygon{
+    background-color: #21112D;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    border-radius: 20px;
+  }
+  
+  .polygon-1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    
+  }
