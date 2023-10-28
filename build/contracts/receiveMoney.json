@@ -1,0 +1,218 @@
+{
+  "contractName": "receiveMoney",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "receivemoney",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.1+commit.c8a2cb62\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[],\"name\":\"receivemoney\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/test.sol\":\"receiveMoney\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/test.sol\":{\"keccak256\":\"0x4c0ba0c08f9422c2e906ab0786507f794a221a8ee175f359ef46e653fbf2b20d\",\"urls\":[\"bzzr://bae3fcb8becace33f60e48d6898d47c9520cbb7fcd73ab74a90dad036e2a0a46\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060748061001e6000396000f3fe6080604052600436106039576000357c010000000000000000000000000000000000000000000000000000000090048063c40e4c9314603e575b600080fd5b60446046565b005b56fea165627a7a72305820755f667adc69546a2c4322357f53bc61ef448ea21d1200c122c3c63e161995710029",
+  "deployedBytecode": "0x6080604052600436106039576000357c010000000000000000000000000000000000000000000000000000000090048063c40e4c9314603e575b600080fd5b60446046565b005b56fea165627a7a72305820755f667adc69546a2c4322357f53bc61ef448ea21d1200c122c3c63e161995710029",
+  "sourceMap": "71:88:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;71:88:3;;;;;;;",
+  "deployedSourceMap": "71:88:3:-;;;;;;;;;;;;;;;;;;;;;;99:57;;;:::i;:::-;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n\r\ncontract receiveMoney{\r\n    function  receivemoney() public payable{\r\n        \r\n    }\r\n}",
+  "sourcePath": "C:\\Users\\91630\\Desktop\\syntax-error1\\contracts\\contracts\\test.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/test.sol",
+    "exportedSymbols": {
+      "receiveMoney": [
+        413
+      ]
+    },
+    "id": 414,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 408,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:32:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 413,
+        "linearizedBaseContracts": [
+          413
+        ],
+        "name": "receiveMoney",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 411,
+              "nodeType": "Block",
+              "src": "138:18:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 412,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "receivemoney",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 409,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "121:2:3"
+            },
+            "returnParameters": {
+              "id": 410,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "138:0:3"
+            },
+            "scope": 413,
+            "src": "99:57:3",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 414,
+        "src": "71:88:3"
+      }
+    ],
+    "src": "33:126:3"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/test.sol",
+      "exportedSymbols": {
+        "receiveMoney": [
+          413
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 408,
+        "name": "PragmaDirective",
+        "src": "33:32:3"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            413
+          ],
+          "name": "receiveMoney",
+          "scope": 414
+        },
+        "children": [
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "receivemoney",
+              "scope": 413,
+              "stateMutability": "payable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 409,
+                "name": "ParameterList",
+                "src": "121:2:3"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 410,
+                "name": "ParameterList",
+                "src": "138:0:3"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 411,
+                "name": "Block",
+                "src": "138:18:3"
+              }
+            ],
+            "id": 412,
+            "name": "FunctionDefinition",
+            "src": "99:57:3"
+          }
+        ],
+        "id": 413,
+        "name": "ContractDefinition",
+        "src": "71:88:3"
+      }
+    ],
+    "id": 414,
+    "name": "SourceUnit",
+    "src": "33:126:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.1+commit.c8a2cb62.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2023-10-28T07:46:06.823Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
