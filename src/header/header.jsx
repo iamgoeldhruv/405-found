@@ -1,6 +1,6 @@
 
 "use client"
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 // import Link from 'next/link'
 import './header.css'
 
@@ -8,7 +8,7 @@ import './header.css'
 
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { ethers } from "ethers";
 
 // const ethers = require("ethers")
@@ -46,7 +46,6 @@ export default function Headers(){
 
   const accountChanged = (accountName) => {
     setDefaultAccount(accountName);
-
     getUserBalance(accountName);
   }
 
@@ -59,6 +58,10 @@ export default function Headers(){
         console.error("Error fetching balance:", error);
       });
   }
+  useEffect(()=>{
+
+    localStorage.setItem("Address", JSON.stringify(defaultAccount))
+  },[defaultAccount])
 
   console.log(userBalance);
   
@@ -74,7 +77,7 @@ export default function Headers(){
       EtherFlow
       </div>
       <div class="main-1-1">
-        <li> <Link href="">Trade</Link></li>
+        <li> <NavLink to="/trade" style={{ textDecoration: 'none'}}>Trade</NavLink></li>
         <li>Dashboard</li>
         <li>Portfolio</li>
       </div>

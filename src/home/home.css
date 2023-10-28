@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* background-color: black; */
+    background-color: black;
   }
   
   
@@ -14,21 +14,34 @@
       flex-direction: column;
       align-items: center;
       gap: 150px;
+      /* margin-top:px; */
       background: #000000;
       background-size: cover;
     }
     
-    .main-1,
+    .main-1{
+        display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 300px;
+      margin-top: 50px;
+      /* flex-direction: column; */
+
+    }
     .main-2 {
       display: flex;
       justify-content: space-around;
       align-items: center;
       gap: 300px;
-      margin-top: 10px;
+      margin-top: 140px;
       /* flex-direction: column; */
     }
     .main-2-1{
       width: 50vw;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: 15px;
     }
   
     .main-1-1{
@@ -62,16 +75,19 @@
     align-items: center;
     justify-content: space-around;
     gap: 150px;
+    /* margin-top: 100px; */
   }
   
   .card{
-    background-color: #2D2D2D;
+    background-color: #2E2E2E;
     height: 305px;
     width: 288px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
+    gap: 15px;
+    letter-spacing: 2px;
     font-weight: 700;
     color:  #ffdd61;
     margin-left: 30px;
@@ -82,7 +98,7 @@
   }
   
   .button{
-    color: white;
+    color: black;
   }
   
   .connect-wallet{

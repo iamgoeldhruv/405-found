@@ -2,7 +2,7 @@
   background-color: purple;
 } */
 .polygon{
-    background-color: #21112D;
+    background-color: #21112d;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -11,6 +11,7 @@
   }
   
   .polygon-1{
+    background-color: #21112d;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

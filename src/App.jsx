@@ -4,7 +4,7 @@ import { useState } from 'react'
 import './App.css'
 import Polygon from './components/polygon/polygon';
 import Footer from './components/footer/foooter';
-import Headers from './components/header';
+import Headers from './header/header';
 import Home from './home/home';
 
 function App() {
