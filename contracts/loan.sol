@@ -2,6 +2,7 @@
 pragma experimental ABIEncoderV2;
 pragma solidity >=0.4.22 <0.9.0;
 
+//remember I rweaked 30days to 1day somehwere
 
 
 contract Loan {
@@ -49,7 +50,7 @@ contract Loan {
     emit Log(_to, _to.balance);
 }
 
-    uint256 constant private MONTH_IN_SECONDS = 30 days; 
+    uint256 constant private MONTH_IN_SECONDS = 1 days; 
 
     function provideLoan(address loan_provider) public payable{
         Loan_given memory loan_given = Loan_given(total_provided_loans , msg.value , loan_provider);
