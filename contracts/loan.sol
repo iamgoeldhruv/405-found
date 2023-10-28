@@ -51,30 +51,38 @@ contract Loan {
 
     uint256 constant private MONTH_IN_SECONDS = 30 days; 
 
-    function provideLoan(uint256 loan_amount , address loan_provider) public payable{
-        Loan_given memory loan_given = Loan_given(total_provided_loans , loan_amount , loan_provider);
+    function provideLoan(address loan_provider) public payable{
+        Loan_given memory loan_given = Loan_given(total_provided_loans , msg.value , loan_provider);
         provided_loans[total_provided_loans] = loan_given;
-        total_provided_loans++;
-        require(loan_provider.balance > msg.value , "U can't provide that loan!");
-        bool sent = payable(address(this)).send(msg.value);
+        total_provided_loans++;   
     }
 
     function checkProvidedLoans(uint256 loan_id) public view returns (Loan_given memory) {
         return provided_loans[loan_id];
     }
 
-    function getLoan(uint256 _amount_borrowed,
-        int _interest_rate,
-        uint256 _time_of_repayment,
-        address payable _borrower_id,
-        address _sender_id
-        // Collateral memory _collateral
-        ) public {
-        require(_sender_id.balance > _amount_borrowed , "You don't have funds to give loans");
-        Loan_info memory loan = Loan_info(total_loans,_amount_borrowed , _interest_rate ,_time_of_repayment, _borrower_id , _sender_id , 0,false);
-        loans_mapping[total_loans] = loan;
-        total_loans++;
-    }
+   function getLoan(
+    uint256 provided_loanID,
+    int _interest_rate,
+    uint256 _time_of_repayment,
+    address payable _borrower_id
+) public payable {
+    address _sender_id = provided_loans[provided_loanID].loan_provider;
+    uint256 _amount_borrowed = provided_loans[provided_loanID].loan_amount;
+    require(address(this).balance >= _amount_borrowed, "Contract balance is insufficient");
+
+    // Create the Loan_info struct and store it
+    Loan_info memory loan = Loan_info(total_loans, _amount_borrowed, _interest_rate, _time_of_repayment, _borrower_id, _sender_id, 0, false);
+    loans_mapping[total_loans] = loan;
+    total_loans++;
+
+    // Send the amount to the borrower
+    bool sent = _borrower_id.send(_amount_borrowed);
+
+    // Check if the send operation was successful
+    require(sent, "Failed to send Ether to the borrower");
+}
+
 
     function calculateMonthlyPayment(uint256 loanId) internal view returns (uint256) {
         Loan_info storage loan = loans_mapping[loanId];
@@ -92,7 +100,7 @@ contract Loan {
         uint256 amount_to_be_paid = calculateMonthlyPayment(loanId);
         require(!loan.isRepaid, "Loan is already repaid");
         // require(block.timestamp <= loan.time_of_repayment, "Payment can only be made before the due date");
-        require(address(this).balance >= amount_to_be_paid, "Insufficient contract balance");
+        require(loan.borrower_id.balance >= amount_to_be_paid, "Insufficient contract balance");
 
         bool sent = loan.borrower_id.send(amount_to_be_paid);
         require(sent, "Failed to send payment");
@@ -104,6 +112,8 @@ contract Loan {
         if (loan.amount_repayed >= loan.amount_borrowed) {
             loan.isRepaid = true;
         }
+
+        loans_mapping[loanId] = loan;
     }
 
     function depositCollateral(uint256 loanId, address nftContract, uint256 tokenId) public {

@@ -30,13 +30,14 @@ const getLoan= async (sender , reciever , value) =>  {
     const valueToSend = ethers.parseEther('1');
     const tx = await wallet.sendTransaction({
         to: contract_address,
-        value : valueToSend,
-        // data: write_contract.interface.encodeFunctionData('getLoan' , [10 , 6 , 27900 , '0xDc3C64AE200A68e0f38eb1EEc1665D7C0a29BD4d' , '0x897D5bBBEb7740a486ebE880e284FE1eA28D95cF']),
-        data: write_contract.interface.encodeFunctionData('provideLoan' , [1 , '0xCF96db4A9b6d31F9d100cB61fbB42225d32c0ea0']),
+        // value : valueToSend,
+        // data: write_contract.interface.encodeFunctionData('provideLoan' , ['0xef37AE63B3CFDa9E99ca7aA4D72255dec7c4624D']),
+        data: write_contract.interface.encodeFunctionData('getLoan' , [0,6,27900, '0x011f1c1A270c9769373fc985ee2f2Ade9c8Fb384']),
+        // data : write_contract.interface.encodeFunctionData('automaticMonthlyPayment' , [1])
         });
     await tx.wait();
-    var result = await read_contract.checkProvidedLoans(6);  
-    console.log(result); 
+    // var result = await read_contract.getLoanDetails(0);  
+    // console.log(result); 
 }
 
 getLoan()

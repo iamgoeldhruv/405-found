@@ -1,5 +1,5 @@
-var private_key = "0xd878c400030d1b23f181be77306872f1ad8fa19d9c0530b5ad61074a65bdf775";
-var sender_privateKey = "0xd878c400030d1b23f181be77306872f1ad8fa19d9c0530b5ad61074a65bdf775";
-var contract_address = "0x6cCe4378b2622405A2fBc71665Bf834428Cf01C4";
-var loan_giver_privateKey = "0x0fe8bfefad64b52ac8ce89dff1ed09f6605112a5c3ecc008d1d5421b964387cb";
+var private_key = "0x3410dd8cc4893501fca9ef33343db2704c9abbbbad753943f814e2ec330e31e8";
+var sender_privateKey = "0xf4c7bb4805d3a660cd6dbff78b8cee4b27b67d3daeada5855d21745390631987";
+var contract_address = "0x8862b482F47a3706eCBA63a6cCaaa2A877809f76";
+var loan_giver_privateKey = "0x161cb2880db9574fa6826e9b566a9acee9391724e41ed832d134811c45ac813d";
 module.exports = {private_key , sender_privateKey , contract_address , loan_giver_privateKey};
