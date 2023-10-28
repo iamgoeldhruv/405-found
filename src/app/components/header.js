@@ -2,8 +2,17 @@
 import Link from 'next/link'
 import './header.css'
 
+  import MetmaskConnect from './metamaskConnection/metamask'
+
 export default function Headers(){
+  // <MetmaskConnect/>
+  const ConnectMetaMask=()=>{
+   
+    MetmaskConnect();
+
+  }
     return(
+      
 
     <div class="main" >
     <div class = "main-1">
@@ -16,7 +25,7 @@ export default function Headers(){
         <li>Portfolio</li>
       </div>
       <div>
-         <Link href="" class="button" > Connect Wallet</Link>
+        <button class="button"  onClick={ConnectMetaMask} > Connect Wallet</button>
      
       </div>
     </div>
