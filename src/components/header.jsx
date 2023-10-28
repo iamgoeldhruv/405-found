@@ -1,5 +1,6 @@
 
 "use client"
+import { Link } from 'react-router-dom';
 // import Link from 'next/link'
 import './header.css'
 
@@ -49,7 +50,7 @@ export default function Headers(){
     getUserBalance(accountName);
   }
 
-  const getUserBalance = (accountAddress) => {
+  const getUserBalance = (accountAddress) =>{
     window.ethereum.request({ method: 'eth_getBalance', params: [String(accountAddress), "latest"] })
       .then(balance => {
         setUserBalance(ethers.utils.formatEther(balance));
@@ -73,7 +74,7 @@ export default function Headers(){
       EtherFlow
       </div>
       <div class="main-1-1">
-        <li> <a href="/trade">Trade</a></li>
+        <li> <Link href="">Trade</Link></li>
         <li>Dashboard</li>
         <li>Portfolio</li>
       </div>
