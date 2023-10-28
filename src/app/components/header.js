@@ -1,16 +1,78 @@
 
+"use client"
 import Link from 'next/link'
 import './header.css'
 
-  import MetmaskConnect from './metamaskConnection/metamask'
+// import MetmaskConnect from './metamaskConnection/metamask'
+
+
+
+import React, { useState } from "react";
+// import { ethers } from "ethers";
+
+const ethers = require("ethers")
+
+
+
 
 export default function Headers(){
-  // <MetmaskConnect/>
-  const ConnectMetaMask=()=>{
-   
-    MetmaskConnect();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [defaultAccount, setDefaultAccount] = useState("");
+  const [userBalance, setUserBalance] = useState("");
+
+  const [address, setaddress] = useState("Connect Wallet")
+
+  
+
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      console.log("MetaMask detected");
+      try {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        console.log(accounts);
+        accountChanged(accounts[0]);
+      } catch (error) {
+        console.log("Error connecting to MetaMask");
+      }
+    } else {
+      setErrorMessage('Install MetaMask');
+    }
+  }
+  
+
+  const accountChanged = (accountName) => {
+    setDefaultAccount(accountName);
+    getUserBalance(accountName);
+  }
+
+  const getUserBalance = (accountAddress) => {
+    window.ethereum.request({ method: 'eth_getBalance', params: [String(accountAddress), "latest"] })
+      .then(balance => {
+        setUserBalance(ethers.utils.formatEther(balance));
+      })
+      .catch(error => {
+        console.error("Error fetching balance:", error);
+      });
+  }
+
+  console.log(userBalance);
+  const handleclick=()=>{
+    try {
+      connectWallet()
+
+      setaddress("123")
+      
+    } catch (error) {
+      console.log(error);
+    }
+
 
   }
+
+  // <MetmaskConnect/>
+  
     return(
       
 
@@ -25,7 +87,7 @@ export default function Headers(){
         <li>Portfolio</li>
       </div>
       <div>
-        <button class="button"  onClick={ConnectMetaMask} > Connect Wallet</button>
+        <button class="button"  onClick={handleclick} > {address}</button>
      
       </div>
     </div>

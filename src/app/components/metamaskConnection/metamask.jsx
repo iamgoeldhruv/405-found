@@ -1,5 +1,9 @@
+"use client"
+
 import React, { useState } from "react";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
+
+const ethers = require("ethers")
 
 export default function MetmaskConnect() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,7 +47,7 @@ export default function MetmaskConnect() {
   }
 
   console.log(userBalance);
-
+  connectWallet();
   return (
     <div>
       <button onClick={connectWallet}>Connect Wallet</button>
