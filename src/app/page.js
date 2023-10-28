@@ -7,6 +7,7 @@ import { useState ,useEffect } from 'react';
 import Headers from './components/header';
 import Card from './components/card';
 import Polygon from './components/polygon/polygon';
+import Footer from './components/footer/foooter';
 
 // import './global.css'
 // import {ethers} from 'ethers'
@@ -128,7 +129,7 @@ export default  function Home() {
 
     </div>
     <Polygon/>
-
+    <Footer/>
     </div>
 
          
