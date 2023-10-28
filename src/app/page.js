@@ -32,11 +32,13 @@ export default  function Home() {
       <Headers/>
       <div class="main-2">
       <div class="main-2-1">
-      <h1 class="font"  >Unlock the <br/> Power of Etheruem </h1>
+      <h1 class="font "  >Unlock the <br/> Power of <span className='gradient-text'> Etheruem</span> </h1>
       {/* <h1 class="font"></h1> */}
 
       <p className='letterSpacing' >Grow your wealth with seamless transactions <br/> 
       and boundless opportunites</p>
+      <button className='button'> Get Trading</button>
+      
       </div>
 
       <div>

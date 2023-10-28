@@ -71,7 +71,7 @@ export default function Headers(){
       EtherFlow
       </div>
       <div class="main-1-1">
-        <li>Trade</li>
+        <li> <Link href={"./trade"}>Trade</Link></li>
         <li>Dashboard</li>
         <li>Portfolio</li>
       </div>
