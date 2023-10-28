@@ -7,16 +7,16 @@ export default function Footer() {
             <div className='footer-start'>
                 <p style={{ fontSize: "48px", fontWeight: "bolder", color: "#AAA8AD", margin: "10px" }}>EtherFlow is built upon</p>
                 <p className='footer-start-1' >
-                    <img alt='img1' />
-                    <img alt='img1' />
-                    <img alt='img1' />
-                    <img alt='img1' />
+                    <img  src='/solidty.svg' alt='img1' />
+                    <img src='/django.svg' alt='img1' />
+                    <img src='/react.svg' alt='img1'  />
+                    <img src='/reacts.svg' alt='img1' />
                 </p>
             </div>
 
             <div className='footer-mid-main'>
                 <div className='footer-mid'>
-                    <p>EtherFlow</p>
+                    <p style={{fontSize:"24px"}}>EtherFlow</p>
 
                     <div className='footer-mid-1'>
                         <li>Protocol</li>
@@ -28,7 +28,7 @@ export default function Footer() {
                 </div>
 
                 <div className='footer-mid'>
-                    <div className='footer-end-left'><img alt='img1' /> <img alt='img1' /><img alt='img1' /><img alt='img1' /></div>
+                    <div className='footer-end-left'><img alt='img1' src='/socialicons.svg' /></div>
                     <div className='footer-end'>
                         <div className='footer-end-right'>
                             <li>Branding</li>

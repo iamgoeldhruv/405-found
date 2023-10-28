@@ -63,9 +63,13 @@
 
 .card{
   background-color: rgb(129, 126, 126);
-  height: 228px;
-  width: 305px;
+  height: 305px;
+  width: 288px;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .button{

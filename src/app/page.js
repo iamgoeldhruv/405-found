@@ -1,5 +1,6 @@
 'use client'
 
+// import Ethereum from '/Ethereum.svg'
 
 // import image1 from './wallet.svg'
 import Link from 'next/link';
@@ -54,7 +55,7 @@ export default  function Home() {
       IMAGE
     </div>
     <div class="card">
-      <Card heading1={"Lending Ethereum"}  heading2={" with NFT-collateral "} content={"Our platform allows users to use their NFTs as collateral to borrow Ethereum, expanding opportunities in the NFT lending space."} />
+      <Card  heading1={"Lending Ethereum"}  heading2={" with NFT-collateral "} content={"Our platform allows users to use their NFTs as collateral to borrow Ethereum, expanding opportunities in the NFT lending space."} />
     </div>
     <div>
     <Card/>
