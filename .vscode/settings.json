@@ -1,0 +1,4 @@
+{
+    "solidity.defaultCompiler": "localFile",
+    "solidity.remappings":["@openzeppelin/=/Users/Pranav_1/node_modules/@openzeppelin"]
+}
