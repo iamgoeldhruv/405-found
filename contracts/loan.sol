@@ -18,7 +18,7 @@ contract Loan {
     }
 
     constructor() public {
-        status = Status.Granted;
+        status = Status.Ongoing;
         sender_id = msg.sender;
     }
 
@@ -32,20 +32,21 @@ contract Loan {
         status = _status;
     }
 
-    function fundLoan(address payable _to , uint256 value) public payable{
-        emit Log(sender_id , sender_id.balance);
-        emit LogValue(value);
-        require(sender_id.balance > value , "Insufficient Funds");
-        // _to.transfer(value);
-        // emit Log(_to , _to.balance);
-    }
+    function fundLoan(address payable from , address payable _to, uint256 value) public payable {
+    require(from.balance >= value, "Insufficient Funds"); // Check the contract's balance
+    bool sent = _to.send(value);
+    emit Log(_to, _to.balance);
+}
 
-    function getAccountBalance(address target_address) public returns (uint) {
+    function getAccountBalance(address target_address) public  returns (uint256) {
         // emit LogSender(sender_id);
         emit LogValue(target_address.balance);
         return target_address.balance;
+    }
 
-
+    function returnSenderID() public returns (address){
+        emit LogSender(msg.sender);
+        return msg.sender;
     }
     
     event Log(address sender , uint256 balance);
@@ -53,8 +54,6 @@ contract Loan {
     event LogSender(address sender);
 
     event LogValue(uint256 value);
-
-
-    
     
 }
+
