@@ -15,7 +15,7 @@ contract Loan {
         int interest_rate;
         uint256 time_of_repayment;
         address payable borrower_id;
-        address sender_id;
+        address payable sender_id;
         uint256 amount_repayed;
         bool isRepaid;
         // Collateral collateral;
@@ -72,13 +72,12 @@ contract Loan {
     require(address(this).balance >= _amount_borrowed, "Contract balance is insufficient");
 
     // Create the Loan_info struct and store it
-    Loan_info memory loan = Loan_info(total_loans, _amount_borrowed, _interest_rate, _time_of_repayment, _borrower_id, _sender_id, 0, false);
+    Loan_info memory loan = Loan_info(total_loans, _amount_borrowed, _interest_rate, _time_of_repayment, _borrower_id, payable(_sender_id), 0, false);
     loans_mapping[total_loans] = loan;
     total_loans++;
 
     // Send the amount to the borrower
     bool sent = _borrower_id.send(_amount_borrowed);
-
     // Check if the send operation was successful
     require(sent, "Failed to send Ether to the borrower");
 }
@@ -95,14 +94,17 @@ contract Loan {
         delete loans_mapping[loan_id];
     }
 
-    function automaticMonthlyPayment(uint256 loanId) public {
+    function automaticMonthlyPayment(uint256 loanId) public payable{
         Loan_info storage loan = loans_mapping[loanId];
         uint256 amount_to_be_paid = calculateMonthlyPayment(loanId);
+        emit LogValue(amount_to_be_paid);
         require(!loan.isRepaid, "Loan is already repaid");
         // require(block.timestamp <= loan.time_of_repayment, "Payment can only be made before the due date");
         require(loan.borrower_id.balance >= amount_to_be_paid, "Insufficient contract balance");
-
-        bool sent = loan.borrower_id.send(amount_to_be_paid);
+        // require(msg.value == amount_to_be_paid , "Error");
+        emit LogValueBefore(loan.sender_id.balance);
+        bool sent = payable(loan.sender_id).send(amount_to_be_paid);
+        emit LogValueAfter(loan.sender_id.balance);
         require(sent, "Failed to send payment");
 
         // If payment goes thru->
@@ -141,6 +143,8 @@ contract Loan {
 
     event LogSender(address sender);
 
+    event LogValueBefore(uint256 value);
+    event LogValueAfter(uint256 value);
     event LogValue(uint256 value);
 
     event LogMapping(Loan_info loan);

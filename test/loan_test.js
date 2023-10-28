@@ -30,14 +30,51 @@ const getLoan= async (sender , reciever , value) =>  {
     const valueToSend = ethers.parseEther('1');
     const tx = await wallet.sendTransaction({
         to: contract_address,
+        value : valueToSend,
+        data: write_contract.interface.encodeFunctionData('provideLoan' , ['0xef37AE63B3CFDa9E99ca7aA4D72255dec7c4624D']),
+        // data: write_contract.interface.encodeFunctionData('getLoan' , [0,6,27900, '0x011f1c1A270c9769373fc985ee2f2Ade9c8Fb384']),
+        // data : write_contract.interface.encodeFunctionData('automaticMonthlyPayment' , [1])
+        });
+    await tx.wait();
+    const tx1 = await wallet.sendTransaction({
+        to: contract_address,
         // value : valueToSend,
         // data: write_contract.interface.encodeFunctionData('provideLoan' , ['0xef37AE63B3CFDa9E99ca7aA4D72255dec7c4624D']),
         data: write_contract.interface.encodeFunctionData('getLoan' , [0,6,27900, '0x011f1c1A270c9769373fc985ee2f2Ade9c8Fb384']),
         // data : write_contract.interface.encodeFunctionData('automaticMonthlyPayment' , [1])
         });
-    await tx.wait();
+    await tx1.wait();
     // var result = await read_contract.getLoanDetails(0);  
     // console.log(result); 
 }
 
-getLoan()
+const repayLoan = async () => {
+    abi = await loadContractABI();
+    var provider = new ethers.JsonRpcProvider("http://10.74.2.186:7545");
+    const wallet = new ethers.Wallet("0xde27599ff469b36739fd393aa165ee60df6a1055e0d0b95bd8a566ac156f2146", provider);
+    var read_contract = new ethers.Contract(contract_address , abi , provider);
+    var write_contract = new ethers.Contract(contract_address , abi , wallet);
+    const valueToSend = ethers.parseEther('1');
+    const tx = await wallet.sendTransaction({
+        to: contract_address,
+        value : valueToSend,
+        data: write_contract.interface.encodeFunctionData('automaticMonthlyPayment' , [0]),
+        // data: write_contract.interface.encodeFunctionData('getLoan' , [0,6,27900, '0x011f1c1A270c9769373fc985ee2f2Ade9c8Fb384']),
+        // data : write_contract.interface.encodeFunctionData('automaticMonthlyPayment' , [1])
+        });
+    await tx.wait();
+}
+
+const getDetails = async () => {
+    abi = await loadContractABI();
+    var provider = new ethers.JsonRpcProvider("http://10.74.2.186:7545");
+    const wallet = new ethers.Wallet(keys.loan_giver_privateKey, provider);
+    var read_contract = new ethers.Contract(contract_address , abi , provider);
+    var write_contract = new ethers.Contract(contract_address , abi , wallet);
+    var result = await read_contract.getLoanDetails(0);
+    console.log(result);
+}
+
+// getLoan()
+repayLoan()
+// getDetails()
