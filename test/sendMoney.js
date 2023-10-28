@@ -34,10 +34,18 @@ const wallet = new ethers.Wallet(privateKey, provider);
 
 var write_contract = new ethers.Contract(address , abi , wallet);
 const decimals = 18;
+const valueToSend = ethers.parseEther('10.0');
+const tx = await wallet.sendTransaction({
+    to: address,
+    value: valueToSend,
+    data: write_contract.interface.encodeFunctionData('fundLoan', ['0x1f5041fC02dCEbeb67d467F24082025943e2Cdbb' , "0x8A7f2445050cEEeabDaA56c4fD23bB4F37629F5a"
+ , 123]),
+});
+await tx.wait();
 
-const result = await write_contract.fundLoan("0x1f5041fC02dCEbeb67d467F24082025943e2Cdbb" , address,"1000000000000000000");
+// const result = await write_contract.fundLoan("0x1f5041fC02dCEbeb67d467F24082025943e2Cdbb" , address,"1000000000000000000");
 
-// const balance_after = await write_contract.getAccountBalance(address);
+const balance_after = await write_contract.getAccountBalance(address);
 // const result = await write_contract.getAccountBalance("0x1f5041fC02dCEbeb67d467F24082025943e2Cdbb");
 }  
 
