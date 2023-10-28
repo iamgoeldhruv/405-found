@@ -41,7 +41,7 @@ contract Loan {
     mapping(uint256 => Collateral) public loanCollaterals;
     mapping (address => Loan_info []) public loansByBorrower;
     mapping (address => Loan_info []) public loansByReciever;
-
+    mapping(uint256 => uint256) public loansProvidedByTheirValue;
     function sendPaisa(address payable from , address payable _to) public payable {
     require(from.balance >= msg.value, "Insufficient Funds"); // Check the contract's balance
     bool sent = _to.send(msg.value);
@@ -57,6 +57,10 @@ contract Loan {
         total_provided_loans++;
         require(loan_provider.balance > msg.value , "U can't provide that loan!");
         bool sent = payable(address(this)).send(msg.value);
+    }
+
+    function checkProvidedLoans(uint256 loan_id) public view returns (Loan_given memory) {
+        return provided_loans[loan_id];
     }
 
     function getLoan(uint256 _amount_borrowed,
@@ -113,14 +117,13 @@ contract Loan {
     }
 
 
-    function getAccountBalance(address target_address) public  returns (uint256) {
+    function getAccountBalance(address target_address) public view  returns (uint256) {
         // emit LogSender(sender_id);
-        emit LogValue(target_address.balance);
         return target_address.balance;
     }
 
-    function getLoanDetails(uint256 loan_id) public  {
-        emit LogMapping(loans_mapping[loan_id]);
+    function getLoanDetails(uint256 loan_id) public view returns (Loan_info memory) {
+        return loans_mapping[loan_id];
     }
 
 
@@ -131,5 +134,7 @@ contract Loan {
     event LogValue(uint256 value);
 
     event LogMapping(Loan_info loan);
+
+    event LogMappingProvided(Loan_given loan);
 }
 
