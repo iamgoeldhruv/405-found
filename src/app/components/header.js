@@ -17,10 +17,9 @@ const ethers = require("ethers")
 
 export default function Headers(){
   const [errorMessage, setErrorMessage] = useState("");
-  const [defaultAccount, setDefaultAccount] = useState("");
+  const [defaultAccount, setDefaultAccount] = useState("Connect Wallet");
   const [userBalance, setUserBalance] = useState("");
 
-  const [address, setaddress] = useState("Connect Wallet")
 
   
 
@@ -44,6 +43,7 @@ export default function Headers(){
 
   const accountChanged = (accountName) => {
     setDefaultAccount(accountName);
+
     getUserBalance(accountName);
   }
 
@@ -58,18 +58,7 @@ export default function Headers(){
   }
 
   console.log(userBalance);
-  const handleclick=()=>{
-    try {
-      connectWallet()
-
-      setaddress("123")
-      
-    } catch (error) {
-      console.log(error);
-    }
-
-
-  }
+  
 
   // <MetmaskConnect/>
   
@@ -87,7 +76,7 @@ export default function Headers(){
         <li>Portfolio</li>
       </div>
       <div>
-        <button class="button"  onClick={handleclick} > {address}</button>
+        <button class="button"  onClick={connectWallet} > {defaultAccount}</button>
      
       </div>
     </div>
