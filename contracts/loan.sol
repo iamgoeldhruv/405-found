@@ -32,10 +32,27 @@ contract Loan {
         status = _status;
     }
 
-    function fundLoan(address payable _to) public payable{
-        _to.transfer(msg.value);
+    function fundLoan(address payable _to , uint256 value) public payable{
+        emit Log(sender_id , sender_id.balance);
+        emit LogValue(value);
+        require(sender_id.balance > value , "Insufficient Funds");
+        // _to.transfer(value);
+        // emit Log(_to , _to.balance);
+    }
+
+    function getAccountBalance(address target_address) public returns (uint) {
+        // emit LogSender(sender_id);
+        emit LogValue(target_address.balance);
+        return target_address.balance;
+
+
     }
     
+    event Log(address sender , uint256 balance);
+
+    event LogSender(address sender);
+
+    event LogValue(uint256 value);
 
 
     
