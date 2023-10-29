@@ -23,6 +23,8 @@ export default function Headers(){
   const [defaultAccount, setDefaultAccount] = useState("Connect Wallet");
   const [userBalance, setUserBalance] = useState("");
 
+  const [Color, setColor] = useState("white")
+
 
   
 
@@ -74,7 +76,7 @@ export default function Headers(){
     <div class="main" >
     <div class = "main-1">
       <div class="ether-flow">
-      EtherFlow
+      <img src="/EtherFlow.svg" alt="" height={"33px"} width={"113px"} />
       </div>
       <div class="main-1-1">
         <li> <NavLink to="/trade" style={{ textDecoration: 'none'}}>Trade</NavLink></li>

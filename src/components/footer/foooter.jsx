@@ -13,7 +13,7 @@ export default function Footer() {
                     <img src='/reacts.svg' alt='img1' />
                 </p>
             </div>
-
+            <hr className='hr1'/>
             <div className='footer-mid-main'>
                 <div className='footer-mid'>
                     <p style={{fontSize:"24px"}}>EtherFlow</p>

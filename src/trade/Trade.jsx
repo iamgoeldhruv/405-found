@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './trade.css'
+import { NavLink } from 'react-router-dom'
 export default function Trade() {
   let address=localStorage.getItem("Address")
   if(address===null){
@@ -16,7 +17,7 @@ export default function Trade() {
       </div>
       <div className='box trade-1'>
         <img src="" alt="image" />
-        <button className='button' >Borrow from User</button>
+        <button className='button' > <NavLink to={"/borrowFromuser"} style={{textDecoration:"none", background:"transparent", color:"black"} }>Borrow from User</NavLink></button>
       </div>
     </div>
   )
