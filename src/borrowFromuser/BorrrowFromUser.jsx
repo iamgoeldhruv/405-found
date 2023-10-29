@@ -17,7 +17,7 @@ function BorrrowFromUser() {
     // const wallet = new ethers.Wallet(keys.loan_giver_privateKey, provider);
     var read_contract = new ethers.Contract(contract_address , abi , provider);
     var write_contract = new ethers.Contract(contract_address , abi , signer);
-    const valueToSend = ethers.utils.parseEther(setvalue);
+    const valueToSend = ethers.utils.parseEther(value);
     try {
       const tx = await signer.sendTransaction({
         to: contract_address,
@@ -42,7 +42,9 @@ function BorrrowFromUser() {
     // console.log("TESTINF");
 }
 
-  const handleSubmit = () =>{
+  const handleSubmit = (e) =>{
+      e.preventDefault()
+      // console.log(value);
       getDetails
   }
   return (
