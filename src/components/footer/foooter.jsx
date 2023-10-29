@@ -16,7 +16,7 @@ export default function Footer() {
             <hr className='hr1'/>
             <div className='footer-mid-main'>
                 <div className='footer-mid'>
-                    <p style={{fontSize:"24px"}}>EtherFlow</p>
+                    <p> <img src="/ETHERFLOW_LOGO.svg" alt="" /> </p>
 
                     <div className='footer-mid-1'>
                         <li>Protocol</li>

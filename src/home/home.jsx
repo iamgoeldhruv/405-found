@@ -38,7 +38,7 @@ function Home() {
         </div>
         <div class="mid">
         <div>
-          IMAGE
+          <img src="/Ellipse3.svg" alt="" />
         </div>
         <div class="card">
           <img style={{backgroundColor:"#2D2D2D"}} src='/Ethereum.svg'></img>
@@ -47,8 +47,8 @@ function Home() {
         </div>
         <div  className='card'>
           <img style={{backgroundColor:"#2D2D2D"}} src='/image6.svg'></img>
-          <p style={{backgroundColor:"#2D2D2D"}} className='card-font'>Lending Ethereum <br/> with NFT-collateral </p>
-          <p style={{backgroundColor:"#2D2D2D"}} className='card-font'>Our platform allows <br/> users to use their NFTs <br/> as collateral to borrow <br/> Ethereum, expanding <br/> opportunities in the <br/> NFT lending space.</p>
+          <p style={{backgroundColor:"#2D2D2D"}} className='card-font'>Secure Network  <br/> for Transactions  </p>
+          <p style={{backgroundColor:"#2D2D2D"}} className='card-font'>Transactions on our <br/> network are executed <br/> using polygon, ensuring <br/> transparency and <br/> immutability in every <br/>trade.</p>
         </div>
         </div>
         <div>

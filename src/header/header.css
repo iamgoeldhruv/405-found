@@ -71,3 +71,11 @@ li {
 /* li:hover{
     color: #E8C23C;
 } */
+.NavLink{
+    text-decoration: none;
+}
+
+.NavLink:hover{
+    color: #E8C23C ;
+    transition: 0.5s;
+}
