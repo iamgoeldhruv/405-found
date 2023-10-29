@@ -51,7 +51,7 @@ function BorrrowFromUser() {
           <form action="" onSubmit={handleSubmit}>
             <label htmlFor="">Enter Amount</label><br/>
             <input type="text" name="" id="" onChange={(e)=> setvalue(e.target.value)} />
-          <button  >Submit</button>
+          <button type='submit' >Submit</button>
           </form>
 
 
