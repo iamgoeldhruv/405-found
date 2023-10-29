@@ -55,15 +55,15 @@ export default function Trade() {
     <div className='trade-main' >
       <div className='box trade-1 '>
         <img src="" alt="image" />
-        <button className='button' >Borrow from pool</button>
+        <button className='button' ></button>
       </div>
       <div className='box trade-1'>
         <img src="" alt="image" />
-        <button className='button' > <NavLink to={"/borrowFromuser"} style={{textDecoration:"none", background:"transparent", color:"black"} }>Borrow from User</NavLink></button>
+        <button className='button' > <NavLink to={"/borrowFromuser"} style={{textDecoration:"none", background:"transparent", color:"black"} }>Provide Loan</NavLink></button>
       </div>
       <div className='box trade-1'>
         <img src="" alt="image" />
-        <button className='button' onclick={getDetails} > <NavLink to={"/borrowFromuser"} style={{textDecoration:"none", background:"transparent", color:"black"}  }>Provide Loan</NavLink></button>
+        <button className='button' onClick={getDetails} > <NavLink to={"/getLoan"} style={{textDecoration:"none", background:"transparent", color:"black"}  }>Get Loan</NavLink></button>
       </div>
     </div>
   )

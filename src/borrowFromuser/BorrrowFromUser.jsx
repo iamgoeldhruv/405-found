@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-
+import { ethers } from "ethers";
 import './borrowUser.css'
+import { a } from '../temp.js'
+var signer;
+
+var contract_address = "0x455D9E662F92CEFD83F67344A2df209CB72d03a9";
 function BorrrowFromUser() {
 
   const [value, setvalue] = useState(0)
@@ -45,7 +49,7 @@ function BorrrowFromUser() {
   const handleSubmit = (e) =>{
       e.preventDefault()
       // console.log(value);
-      getDetails
+      getDetails()
   }
   return (
     <div className='user-main'>

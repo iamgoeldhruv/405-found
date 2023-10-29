@@ -10,6 +10,7 @@ import { Layout } from './layout.jsx'
 import Home from './home/home.jsx'
 import About from './about/about.jsx'
 import BorrrowFromUser from './borrowFromuser/BorrrowFromUser.jsx'
+import GetLoan from './getLoan/GetLoan.jsx'
 
 
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path='/trade' element={<Trade/>}/>
       <Route path='/about' element={<About/>} />
       <Route path='/borrowFromuser' element={<BorrrowFromUser/>} />
+      <Route path='/getLoan' element={<GetLoan/>} />
       {/* <Route path='*' element={}/> */}
 
 
